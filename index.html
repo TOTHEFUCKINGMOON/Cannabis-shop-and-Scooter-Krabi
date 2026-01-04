@@ -39,14 +39,17 @@
             .is-visible .photo-right { transform: translateX(380px) rotate(12deg); }
         }
 
-        /* MOBILE: Top and Bottom */
+        /* MOBILE: Top and Bottom (Ajusté pour éviter la superposition) */
         @media (max-width: 767px) {
-            .photo-card { width: 150px; }
-            .photo-left { transform: translateY(0) rotate(-3deg); }
-            .photo-right { transform: translateY(0) rotate(3deg); }
+            .photo-card { width: 140px; }
+            .photo-left { transform: translateY(0) rotate(-3deg); z-index: 5; opacity: 0; }
+            .photo-right { transform: translateY(0) rotate(3deg); z-index: 5; opacity: 0; }
 
-            .is-visible .photo-left { transform: translateY(-160px) rotate(-8deg); opacity: 0.7; }
-            .is-visible .photo-right { transform: translateY(160px) rotate(8deg); opacity: 0.7; }
+            /* Augmentation de l'espacement à 200px pour libérer le texte */
+            .is-visible .photo-left { transform: translateY(-200px) rotate(-8deg); opacity: 0.8; }
+            .is-visible .photo-right { transform: translateY(200px) rotate(8deg); opacity: 0.8; }
+            
+            .animation-container { height: 550px; } /* Augmenté pour laisser la place aux photos */
         }
     </style>
 </head>
@@ -284,7 +287,7 @@
                         weedTitle: "Bestes Weed in Krabi",
                         weedDesc: "Von der Farm direkt zu dir. Unsere Lounge ist der perfekte Ort für Snooker und Entspannung.",
                         priceWeed: "Ab 100 THB / Gramm",
-                        qualityTag: "Premium Qualität Garantiert",
+                        qualityTag: "Premium Quality Garantiert",
                         locTitle: "Anfahrt",
                         locAddress: "6 Khongkha Rd, Pak Nam, Krabi Town 81000",
                         btnDirections: "Wegbeschreibung",
