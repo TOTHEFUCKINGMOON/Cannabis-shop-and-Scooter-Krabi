@@ -10,19 +10,29 @@
     <style>
         [x-cloak] { display: none !important; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); }
-        .card-stack { position: relative; height: 400px; width: 300px; margin: 0 auto; }
-        .card-1 { transform: rotate(-5deg) translateX(-20px); z-index: 10; transition: 0.3s; }
-        .card-2 { transform: rotate(5deg) translateX(20px) translateY(10px); z-index: 5; transition: 0.3s; }
-        .card-stack:hover .card-1 { transform: rotate(-8deg) translateX(-40px); }
-        .card-stack:hover .card-2 { transform: rotate(8deg) translateX(40px); }
+        
+        /* Fixed Card Stack Styling */
+        .card-stack { position: relative; height: 380px; width: 280px; margin: 0 auto; }
+        .card-1 { 
+            transform: rotate(-8deg) translateX(-45px); 
+            z-index: 5; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .card-2 { 
+            transform: rotate(6deg) translateX(45px) translateY(15px); 
+            z-index: 10; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .card-stack:hover .card-1 { transform: rotate(-15deg) translateX(-100px) translateY(-10px); }
+        .card-stack:hover .card-2 { transform: rotate(12deg) translateX(100px) translateY(10px); }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans" x-data="languageManager()">
 
     <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <div class="text-xl md:text-2xl font-black tracking-tighter text-green-500 leading-tight">
-                BIG BIKE & <span class="text-white">CANNABIS</span>
+            <div class="text-xl md:text-2xl font-black tracking-tighter leading-tight">
+                <span class="text-white">BIG BIKE & </span><span class="text-green-500">CANNABIS</span>
             </div>
             
             <div class="flex items-center space-x-4">
@@ -109,7 +119,7 @@
     </section>
 
     <section class="py-24 px-4 bg-gray-900 overflow-hidden">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32">
             <div class="card-stack">
                 <div class="card-1 absolute inset-0 rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-gray-800">
                     <img src="https://lh3.googleusercontent.com/p/AF1QipOzOiwiEnBg-VLdfLRSJUqtAubzLCHrepzdmKrb=w203-h152-k-no" class="w-full h-full object-cover">
@@ -118,7 +128,7 @@
                     <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxz9u2dhAMNwXUgw3rWCSECRljethD7lCgWNg-_bgE2T8sHLtfcSqX3RkTUprFM3MFqAUSD3SGa7S1jLyUvMsBp8I_MOrGVN2B9RrI2VHXf_YU9gp7O74VJ1l4HlWdpZ0FTxCY=w203-h152-k-no" class="w-full h-full object-cover">
                 </div>
             </div>
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left z-20">
                 <h2 class="text-4xl md:text-5xl font-black uppercase text-green-500 mb-4" x-text="t[lang].favTitle"></h2>
                 <p class="text-xl text-gray-400" x-text="t[lang].favSub"></p>
             </div>
@@ -132,7 +142,10 @@
                 <p class="text-gray-400" x-text="t[lang].locAddress"></p>
             </div>
             <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-gray-800">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.4851253457195!2d98.91350817589668!3d8.051894203496016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305193962d38622f%3A0x6b3f736569199d75!2sBig%20Bike%20%26%20Cannabis's%20Super%20Shop%20Krabi%20Town!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth" width="100%" height="450" style="border:0;" loading="lazy"></iframe>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.4047648117765!2d98.9168!3d8.0607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305193496f8c7943%3A0x1c0f0a1c0a1c0a1c!2s6%20Khongkha%20Rd%2C%20Pak%20Nam%2C%20Mueang%20Krabi%20District%2C%20Krabi%2081000!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth" 
+                    width="100%" height="450" style="border:0;" loading="lazy">
+                </iframe>
                 <div class="p-8 text-center bg-gray-800">
                     <button @click="openMaps()" class="inline-flex items-center space-x-3 bg-white text-black px-10 py-4 rounded-full font-black text-lg hover:bg-green-500 hover:text-white transition transform hover:scale-105">
                         <i class="fas fa-location-arrow"></i><span x-text="t[lang].btnDirections"></span>
@@ -159,11 +172,13 @@
                 lang: localStorage.getItem('userLang') || 'en',
                 setLang(l) { this.lang = l; localStorage.setItem('userLang', l); },
                 openMaps() {
-                    const address = "6 ปากน้ำ Tambon Pak Nam, Mueang Krabi District, Krabi 81000";
+                    const address = "6 Khongkha Rd, Pak Nam, Amphoe Mueang Krabi, Krabi 81000";
                     const encodedAddress = encodeURIComponent(address);
                     if (navigator.platform.indexOf('iPhone') !== -1 || navigator.platform.indexOf('iPad') !== -1) {
                         window.open(`maps://maps.apple.com/?q=${encodedAddress}`);
-                    } else { window.open(`https://www.google.com/maps/search/?api=1&query=$${encodedAddress}`); }
+                    } else { 
+                        window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`); 
+                    }
                 },
                 t: {
                     en: {
@@ -182,7 +197,7 @@
                         priceWeed: "From 100 THB / gram",
                         qualityTag: "Premium Quality Guaranteed",
                         locTitle: "How to get there",
-                        locAddress: "6 Pak Nam, Tambon Pak Nam, Krabi Town 81000",
+                        locAddress: "6 Khongkha Rd, Pak Nam, Krabi Town 81000",
                         btnDirections: "Get Directions",
                         favTitle: "Foreigners and Locals favorite choices!",
                         favSub: "Join the community where quality meets Krabi's authentic lifestyle."
@@ -203,7 +218,7 @@
                         priceWeed: "เริ่มเพียง 100 บาท / กรัม",
                         qualityTag: "รับประกันคุณภาพพรีเมียม",
                         locTitle: "วิธีการเดินทาง",
-                        locAddress: "6 ปากน้ำ ต.ปากน้ำ อ.เมืองกระบี่ 81000",
+                        locAddress: "6 ถนนคงคา ต.ปากน้ำ อ.เมืองกระบี่ 81000",
                         btnDirections: "ขอเส้นทาง",
                         favTitle: "ตัวเลือกยอดนิยมของทั้งชาวต่างชาติและชาวไทย!",
                         favSub: "เข้าร่วมชุมชนที่คุณภาพมาพบกับวิถีชีวิตที่แท้จริงของกระบี่"
@@ -224,7 +239,7 @@
                         priceWeed: "Dès 100 THB / gramme",
                         qualityTag: "Qualité Premium Garantie",
                         locTitle: "Comment s'y rendre",
-                        locAddress: "6 Pak Nam, Tambon Pak Nam, Krabi Town 81000",
+                        locAddress: "6 Khongkha Rd, Pak Nam, Krabi Town 81000",
                         btnDirections: "Obtenir l'itinéraire",
                         favTitle: "Le choix favori des locaux et des voyageurs !",
                         favSub: "Rejoignez la communauté où la qualité rencontre le style de vie authentique de Krabi."
@@ -245,7 +260,7 @@
                         priceWeed: "Ab 100 THB / Gramm",
                         qualityTag: "Premium Qualität Garantiert",
                         locTitle: "Anfahrt",
-                        locAddress: "6 Pak Nam, Tambon Pak Nam, Krabi Town 81000",
+                        locAddress: "6 Khongkha Rd, Pak Nam, Krabi Town 81000",
                         btnDirections: "Wegbeschreibung",
                         favTitle: "Beliebt bei Einheimischen und Touristen!",
                         favSub: "Werde Teil der Community, in der Qualität auf den authentischen Lifestyle von Krabi trifft."
