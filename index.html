@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRABI RIDE & CHILL | Premium Weed & Scooters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        [x-cloak] { display: none !important; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans" x-data="languageManager()">
+
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-center mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tighter text-green-500">KRABI <span class="text-white">RIDE & CHILL</span></div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex space-x-4 mr-6 border-r border-white/20 pr-6">
+                    <a href="#" class="hover:text-green-500 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                
+                <div class="flex space-x-2 bg-white/10 p-1 rounded-full">
+                    <button @click="setLang('en')" class="w-8 h-8 rounded-full overflow-hidden border-2" :class="lang === 'en' ? 'border-green-500' : 'border-transparent'">
+                        <img src="https://flagcdn.com/w40/gb.png" class="w-full h-full object-cover">
+                    </button>
+                    <button @click="setLang('th')" class="w-8 h-8 rounded-full overflow-hidden border-2" :class="lang === 'th' ? 'border-green-500' : 'border-transparent'">
+                        <img src="https://flagcdn.com/w40/th.png" class="w-full h-full object-cover">
+                    </button>
+                    <button @click="setLang('fr')" class="w-8 h-8 rounded-full overflow-hidden border-2" :class="lang === 'fr' ? 'border-green-500' : 'border-transparent'">
+                        <img src="https://flagcdn.com/w40/fr.png" class="w-full h-full object-cover">
+                    </button>
+                    <button @click="setLang('de')" class="w-8 h-8 rounded-full overflow-hidden border-2" :class="lang === 'de' ? 'border-green-500' : 'border-transparent'">
+                        <img src="https://flagcdn.com/w40/de.png" class="w-full h-full object-cover">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+        <div class="absolute inset-0 bg-gray-800 z-0">
+             <div class="w-full h-full hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase" x-text="t[lang].heroTitle"></h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-200" x-text="t[lang].heroSub"></p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#rent" class="bg-green-600 hover:bg-green-500 px-8 py-4 rounded-full font-bold text-lg transition transform hover:scale-105" x-text="t[lang].btnRent"></a>
+                <a href="#chill" class="bg-white/10 hover:bg-white/20 backdrop-blur px-8 py-4 rounded-full font-bold text-lg transition" x-text="t[lang].btnChill"></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="rent" class="py-24 px-4 bg-white text-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black uppercase mb-4" x-text="t[lang].rentTitle"></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" x-text="t[lang].rentDesc"></p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <template x-for="i in [1,2,3]">
+                    <div class="bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition">
+                        <div class="aspect-video bg-gray-300">
+                            </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Honda Click 125i / 160i</h3>
+                            <p class="text-green-600 font-black text-2xl mb-4" x-text="t[lang].priceBike"></p>
+                            <ul class="text-sm space-y-2 mb-6 text-gray-500">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> <span x-text="t[lang].feature1"></span></li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> <span x-text="t[lang].feature2"></span></li>
+                            </ul>
+                            <a href="#" class="block text-center bg-black text-white py-3 rounded-lg font-bold" x-text="t[lang].bookNow"></a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <section id="chill" class="py-24 px-4 bg-gray-950">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-black uppercase mb-6 text-green-500" x-text="t[lang].weedTitle"></h2>
+                <p class="text-xl text-gray-400 mb-8" x-text="t[lang].weedDesc"></p>
+                <div class="bg-green-900/20 border border-green-500/30 p-6 rounded-2xl mb-8">
+                    <p class="text-3xl font-black mb-2" x-text="t[lang].priceWeed"></p>
+                    <p class="text-green-400 uppercase tracking-widest text-sm" x-text="t[lang].qualityTag"></p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-center">
+                        <i class="fas fa-billiards text-2xl mb-2 text-green-500"></i>
+                        <p class="font-bold">Snooker / Pool</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-center">
+                        <i class="fas fa-couch text-2xl mb-2 text-green-500"></i>
+                        <p class="font-bold">Living Room</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="aspect-square bg-gray-800 rounded-2xl"></div>
+                <div class="aspect-square bg-gray-800 rounded-2xl mt-8"></div>
+                <div class="aspect-square bg-gray-800 rounded-2xl -mt-8"></div>
+                <div class="aspect-square bg-gray-800 rounded-2xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center px-4">
+        <div class="flex justify-center space-x-8 mb-8">
+            <a href="#" class="text-3xl hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-3xl hover:text-green-500 transition"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-3xl hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="text-gray-500 text-sm">© 2024 KRABI RIDE & CHILL - Krabi, Thailand</p>
+    </footer>
+
+    <a href="#" class="fixed bottom-6 right-6 bg-green-500 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <script>
+        function languageManager() {
+            return {
+                lang: localStorage.getItem('userLang') || 'en',
+                setLang(l) {
+                    this.lang = l;
+                    localStorage.setItem('userLang', l);
+                    // Force refresh simulated by Alpine's reactivity, 
+                    // or use window.location.reload() if you want a hard refresh.
+                },
+                t: {
+                    en: {
+                        heroTitle: "High Quality. Cheap Prices.",
+                        heroSub: "The best scooters and premium weed in Krabi. No tourist traps, just local vibes.",
+                        btnRent: "Rent a Scooter",
+                        btnChill: "Visit Coffee Shop",
+                        rentTitle: "Premium Rentals",
+                        rentDesc: "New bikes, fully maintained. No passport games, just reliable freedom in Krabi.",
+                        priceBike: "From 150 THB / Day",
+                        feature1: "Insurance Included",
+                        feature2: "2 Helmets provided",
+                        bookNow: "Reserve on WhatsApp",
+                        weedTitle: "The Best Buds in Krabi",
+                        weedDesc: "From farm to your pipe. Our lounge is the perfect spot for locals and travelers to meet over a game of snooker.",
+                        priceWeed: "From 100 THB / gram",
+                        qualityTag: "Premium Quality Guaranteed"
+                    },
+                    th: {
+                        heroTitle: "คุณภาพสูง ราคาคนไทย",
+                        heroSub: "มอเตอร์ไซค์ให้เช่าและกัญชาเกรดพรีเมียมในกระบี่ บรรยากาศเป็นกันเอง ราคาถูกที่สุด",
+                        btnRent: "เช่ารถมอเตอร์ไซค์",
+                        btnChill: "ไปที่ร้านกัญชา",
+                        rentTitle: "รถเช่าคุณภาพ",
+                        rentDesc: "รถใหม่ สภาพดี พร้อมใช้งาน ไม่มีการเก็บพาสปอร์ต เที่ยวกระบี่อย่างสบายใจ",
+                        priceBike: "เริ่มเพียง 150 บาท / วัน",
+                        feature1: "รวมประกันรถ",
+                        feature2: "ฟรีหมวกกันน็อค 2 ใบ",
+                        bookNow: "จองผ่าน WhatsApp",
+                        weedTitle: "กัญชาเกรดพรีเมียม",
+                        weedDesc: "ส่งตรงจากฟาร์ม มุมพักผ่อนมีโต๊ะสนุ๊กเกอร์ แอร์เย็นฉ่ำ เหมาะสำหรับคนท้องถิ่นและนักท่องเที่ยว",
+                        priceWeed: "เริ่มเพียง 100 บาท / กรัม",
+                        qualityTag: "รับประกันคุณภาพพรีเมียม"
+                    },
+                    fr: {
+                        heroTitle: "Haute Qualité. Petits Prix.",
+                        heroSub: "Les meilleurs scooters et de la weed premium à Krabi. Pas de piège à touristes.",
+                        btnRent: "Louer un Scooter",
+                        btnChill: "Côté Coffee Shop",
+                        rentTitle: "Locations Premium",
+                        rentDesc: "Motos neuves et révisées. Pas de rétention de passeport, juste la liberté à Krabi.",
+                        priceBike: "Dès 150 THB / Jour",
+                        feature1: "Assurance Incluse",
+                        feature2: "2 Casques fournis",
+                        bookNow: "Réserver via WhatsApp",
+                        weedTitle: "La Meilleure Weed de Krabi",
+                        weedDesc: "De la ferme à votre pipe. Notre lounge est le spot idéal pour chiller autour d'un billard.",
+                        priceWeed: "Dès 100 THB / gramme",
+                        qualityTag: "Qualité Premium Garantie"
+                    },
+                    de: {
+                        heroTitle: "Beste Qualität. Günstige Preise.",
+                        heroSub: "Die besten Roller und Premium-Weed in Krabi. Keine Touristenfallen, nur echte Vibes.",
+                        btnRent: "Roller mieten",
+                        btnChill: "Coffee Shop besuchen",
+                        rentTitle: "Premium Vermietung",
+                        rentDesc: "Neue Motorräder, top gepflegt. Keine Pass-Hinterlegung, einfach Freiheit genießen.",
+                        priceBike: "Ab 150 THB / Tag",
+                        feature1: "Inklusive Versicherung",
+                        feature2: "2 Helme inklusive",
+                        bookNow: "Über WhatsApp buchen",
+                        weedTitle: "Bestes Weed in Krabi",
+                        weedDesc: "Von der Farm direkt zu dir. Unsere Lounge ist der perfekte Ort für Snooker und Entspannung.",
+                        priceWeed: "Ab 100 THB / Gramm",
+                        qualityTag: "Premium Qualität Garantiert"
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
